@@ -8,8 +8,8 @@ namespace :dev do
     
       show_spinner("Migrando DB ... ") { %x(rails db:migrate) }
 
-      %x(rails dev:add_coins)
       %x(rails dev:add_mining_types) 
+      %x(rails dev:add_coins)
         
     else
       puts "Você não esta em ambiente de desenvolvimento!"
@@ -23,25 +23,29 @@ end
     {
         description: "Bitcoin",
         acronym: "BTC",
-        url_image: "https://www.capital21.io/assets/btc-coin-42133dbc776dd0cfaae06b544c4dd94a3173c3e59862192850bbc5ddbe8bce66.png"
+        url_image: "https://www.capital21.io/assets/btc-coin-42133dbc776dd0cfaae06b544c4dd94a3173c3e59862192850bbc5ddbe8bce66.png",
+        mining_type: MiningType.find_by(acronym: 'PoW')
             },
         
             {
                 description: "Ethereum",
                 acronym: "ETH",
-                url_image: "https://marcas-logos.net/wp-content/uploads/2020/03/ETHEREUM-LOGO.png"
+                url_image: "https://marcas-logos.net/wp-content/uploads/2020/03/ETHEREUM-LOGO.png",
+                mining_type: MiningType.all.sample
             },
             
             {
                 description: "Dash",
                 acronym: "DASH",
-                url_image: "https://s2.coinmarketcap.com/static/img/coins/200x200/131.png"
+                url_image: "https://s2.coinmarketcap.com/static/img/coins/200x200/131.png",
+                mining_type: MiningType.all.sample
             },
             
             {
                 description: "Dogecoin",
                 acronym: "DOGE",
-                url_image: "https://upload.wikimedia.org/wikipedia/pt/d/d0/Dogecoin_Logo.png"
+                url_image: "https://upload.wikimedia.org/wikipedia/pt/d/d0/Dogecoin_Logo.png",
+                mining_type: MiningType.all.sample
             }
         ]
         
